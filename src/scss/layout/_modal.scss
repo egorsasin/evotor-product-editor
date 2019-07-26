@@ -1,0 +1,18 @@
+.modal-header {
+  border-color: $border-color;
+  h4 {
+    font-weight: 400;
+  }
+}
+
+.modal-content {
+  border: none;
+}
+
+.modal-body + .card-table tr:first-child td {
+  border-top: 1px solid $border-color;
+}
+
+.modal-footer {
+  border-color: $border-color;
+}

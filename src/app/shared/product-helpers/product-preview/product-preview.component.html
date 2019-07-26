@@ -1,0 +1,25 @@
+<td>
+  <div class="level-start" [ngStyle]="{ 'margin-left.px': (15 * level) }">
+    <a *ngIf="product.group" (click)="toggleExpand()" class="icon w-25 d-inline-block">
+      <i *ngIf="!isExpanded" class="fe fe-chevron-down"></i>
+      <i *ngIf="isExpanded" class="fe fe-chevron-up"></i>
+    </a>
+  </div>
+  {{ product.name }}
+</td>
+<td><span class="text-muted">{{ level }}</span></td>
+<td>
+  <label *ngIf="!product.group" class="custom-switch">
+    <input type="checkbox" class="custom-switch-input" [checked]="product.allowToSell" (change)="toggleSell()" />
+    <span class="custom-switch-indicator"></span>
+  </label>
+</td>
+<td>{{ product.price }}</td>
+<td>{{ product.measureName }}</td>
+<td><a class="icon" (click)="editProduct(product)">
+    <i class="fe fe-edit-3"></i>
+  </a></td>
+
+<ng-template #node>
+  <tr app-product-preview *ngFor="let product of products; trackBy: trackByUuid" [product]="product" [level]="level + 1"></tr>
+</ng-template>

@@ -1,0 +1,8 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+  <div class="sidebar-footer btn-list text-right ">
+    <button type="button" class="btn btn-secondary btn-space" (click)="cancel()">Отмена</button>
+    <button type="submit" [disabled]="productForm.invalid" class="btn btn-primary btn-space">Сохранить</button>
+  </div>
+
+</form>

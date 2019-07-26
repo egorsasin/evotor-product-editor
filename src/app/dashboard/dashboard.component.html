@@ -1,0 +1,40 @@
+<div class="page">
+  
+  <app-sidebar></app-sidebar>
+  
+  <div class="page-main">
+    <!-- Header -->
+    <app-header></app-header>
+    <div class="my-3 my-md-5">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+
+                <h3 class="card-title">Товары</h3>
+                <div ngbDropdown>
+                  <button ngbDropdownToggle class="btn btn-secondary ml-3" type="button"><i class="fe fe-plus"></i></button>
+                  <div ngbDropdownMenu aria-labelledby="storesDropdown" class="dropdown-menu-arrow">
+                    <a [routerLink]="['product']" class="dropdown-item">Группа товаров</a>
+                    <hr />
+                    <a [routerLink]="['product', { type: 'NORMAL' }]" class="dropdown-item">Товар</a>
+                    <a [routerLink]="['product', { type: 'ALCOHOL_MARKED' }]" class="dropdown-item">Крепкий алкоголь</a>
+                    <a [routerLink]="['product', { type: 'ALCOHOL_NOT_MARKED' }]" class="dropdown-item">
+                      Пиво и слабый алкоголь
+                    </a>
+                    <a [routerLink]="['product', { type: 'SERVICE' }]" class="dropdown-item">Услуга</a>
+                  </div>
+                </div>
+
+              </div>
+              <app-product-list></app-product-list>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>

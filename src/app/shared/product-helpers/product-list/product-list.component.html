@@ -1,0 +1,17 @@
+<div class="table-responsive">
+  <table class="table card-table table-hover table-vcenter text-nowrap">
+    <thead>
+      <tr>
+        <th>Наименование</th>
+        <th>Артикул</th>
+        <th>В продаже</th>
+        <th>Цена</th>
+        <th>Ед</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr app-product-preview *ngFor="let product of products; trackBy: trackByUuid" [product]="product"></tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">Выберите группу</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="form-group mb-0">
+    <label class="form-label">Группа</label>
+    <div class="row gutters-xs">
+      <div class="col">
+        <input type="text" class="form-control" [readonly]="true" value="{{ parent ? parent.name : '' }}">
+      </div>
+      <span *ngIf="parent" class="col-auto">
+        <button class="btn btn-secondary" type="button" (click)="levelUp()"><i class="fe fe-chevron-up"></i></button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<table class="table card-table table-hover table-vcenter text-nowrap mb-0">
+  <tbody>
+    <tr *ngFor="let folder of groups">
+      <td class="action-row" style="cursor: pointer;" (click)="select(folder)">
+        <div class="level-start">
+          <span class="icon">
+            <i class="fe fe-folder"></i>
+          </span>
+        </div>
+        {{ folder.name }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal-footer">
+  <button class="btn btn-primary btn-space" (click)="activeModal.close(parent)">Сохранить</button>
+</div>

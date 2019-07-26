@@ -1,0 +1,26 @@
+<div class="header">
+  <div class="container-fluid">
+    <div class="d-flex">
+      <div ngbDropdown>
+
+        <a ngbDropdownToggle id="storesDropdown" class="nav-link leading-none p-0">
+          <span class="d-block">
+            <span class="text-default">{{ currentStore.name }}</span>
+            <small *ngIf="false" class="text-muted d-block mt-1">{{ currentStore.address ? currentStore.address : "Адрес не указан"
+              }}</small>
+          </span>
+        </a>
+
+        <div ngbDropdownMenu aria-labelledby="storesDropdown" class="dropdown-menu-arrow">
+          <a [routerLink]="['/', store.uuid]" class="dropdown-item" *ngFor="let store of stores">
+            {{ store.name }}
+            <div *ngIf="false" class=" small text-muted ">
+              {{ store.address ? store.address : "Адрес не указан " }}
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+@import "abstracts/variables";
+@import "abstracts/functions";
+
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
+
+@import "../assets/fonts/lato/lato.css";
+// @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&subset=cyrillic');
+
+@import "fonts/feather";
+
+@import "layout/base";
+@import "layout/button";
+@import "layout/cards";
+@import "layout/core";
+@import "layout/dropdown";
+@import "layout/forms";
+@import "layout/grid";
+@import "layout/header";
+@import "layout/icon";
+@import "layout/layout";
+@import "layout/modal";
+@import "layout/details";
+@import "layout/tables";
+@import "layout/text";
+@import "layout/utilities";
+@import "layout/sidebar";
+
+@import "forms/custom-switch";
+@import "forms/select";

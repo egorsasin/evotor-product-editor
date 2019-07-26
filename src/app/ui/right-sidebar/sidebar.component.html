@@ -1,0 +1,8 @@
+<div *ngIf="product" class="fade show"></div>
+
+<div *ngIf="product" class="details">
+  <app-product-editor
+    [product]="product"
+    (close)="close()"
+  ></app-product-editor>
+</div>
