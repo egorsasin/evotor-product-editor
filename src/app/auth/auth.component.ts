@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 
-import { TokenService } from "../shared";
+import { Store } from '@ngrx/store';
+import * as AuthActions from './auth.actions';
 
 @Component({
-  selector: "app-auth",
+  selector: "evo-auth",
   template: "",
   styles: []
 })
@@ -12,13 +13,18 @@ export class AuthComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private tokenService: TokenService
+    private store: Store<any>, 
   ) {}
 
   ngOnInit() {
+    
     this.route.paramMap.subscribe(params => {
-      this.tokenService.setToken(params.get("token"));
+      const token: string = params.get("token");
+      this.store.dispatch(AuthActions.initAction({ token }));
       this.router.navigateByUrl("/");
     });
   }
+
+  // No need to usubscribe from ActivatedRoute on Destroy
+  
 }

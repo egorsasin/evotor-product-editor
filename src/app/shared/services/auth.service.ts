@@ -3,7 +3,7 @@ import { TokenService } from "./token.service";
 import { Observable, BehaviorSubject, ReplaySubject, throwError } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { ApiService } from "./api.service";
-import { Store } from "../models/store";
+import { EvotorStore } from "../models/store";
 
 @Injectable({
   providedIn: "root"
@@ -28,7 +28,7 @@ export class AuthService {
   attemptAuth(token: string): Observable<any> {
     this.tokenService.setToken(token);
     return this.apiService.get("/stores/search").pipe(
-      map((data: Store[]) => {
+      map((data: EvotorStore[]) => {
         this.setAuth(data);
       }),
       catchError(err => {
@@ -38,10 +38,10 @@ export class AuthService {
     );
   }
 
-  setAuth(data: Store[]): void {
+  setAuth(data: EvotorStore[]): void {
     this.isAuthenticatedApp.next(true);
     if (data.length) {
-      const currentStore = this.currentStoreSubject.value as Store;
+      const currentStore = this.currentStoreSubject.value as EvotorStore;
       const predicateStore = data.find(
         store => currentStore.uuid === store.uuid
       );
@@ -51,13 +51,13 @@ export class AuthService {
         this.currentStoreSubject.next(data[0]);
       }
     } else {
-      this.currentStoreSubject.next({} as Store);
+      this.currentStoreSubject.next({} as EvotorStore);
     }
   }
 
   purgeAuth(): void {
     this.tokenService.destroyToken();
-    this.currentStoreSubject.next({} as Store);
+    this.currentStoreSubject.next({} as EvotorStore);
     this.isAuthenticatedApp.next(false);
   }
 

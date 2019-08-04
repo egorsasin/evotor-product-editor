@@ -1,12 +1,25 @@
 .modal-header {
   border-color: $border-color;
-  h4 {
-    font-weight: 400;
+  font-size: $h4-font-size;
+  line-height: 1.2;
+  font-weight: 400;
+
+  .close {
+    &:focus, &:active {
+      border: none;
+    }
+    cursor: pointer;
   }
 }
 
 .modal-content {
-  border: none;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+}
+
+.modal-backdrop {
+  backdrop-filter: blur(2px);
+  //background: $light-black;
 }
 
 .modal-body + .card-table tr:first-child td {
