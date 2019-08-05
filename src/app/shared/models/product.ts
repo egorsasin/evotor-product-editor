@@ -1,4 +1,4 @@
-import { EvotorStore } from "./store";
+import { EvotorStore } from "../../evotor-stores/models/evotor-store";
 
 export enum ProductTypes {
   NORMAL = "Товар",

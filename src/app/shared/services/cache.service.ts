@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Subject, Observable, BehaviorSubject } from "rxjs";
 import { Product } from "../models";
 import { ProductsService } from "./products.service";
-import { StoresService } from "./stores.service";
+import { StoresService } from "../../evotor-stores/evotor-stores.service";
 
 interface CacheContent {
   value: any;

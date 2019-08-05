@@ -6,28 +6,32 @@ import {
   HttpEvent
 } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { TokenService } from "../services/token.service";
+
+import { environment } from '../../../environments/environment';
+import { StorageService } from "../services/storage.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class HttpTokenInterceptor implements HttpInterceptor {
-  constructor(private injector: Injector) {}
+  constructor(
+    private injector: Injector
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const headersConfig = {
-      "Content-Type": "application/json",
-      Accept: "application/json"
+      "Content-Type": "application/vnd.evotor.v2+json",
+      "Accept": "application/vnd.evotor.v2+json"
     };
 
-    const tokenService = this.injector.get(TokenService);
-    const token = tokenService.getToken();
+    const tokenService = this.injector.get(StorageService);
+    const token = tokenService.getItem(environment.token_key);
 
     if (token) {
-      headersConfig["X-Authorization"] = token;
+      headersConfig["Authorization"] = token;
     }
 
     const request = req.clone({

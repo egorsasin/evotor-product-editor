@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api_url: "https://api.evotor.ru/api/v1/inventories"
+  api_url: "https://api.evotor.ru", // Evotor API v2
+  token_key: "evotor-token"
 };
 
 /*

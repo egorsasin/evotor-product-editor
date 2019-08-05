@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 
 import { ApiService } from "./api.service";
 import { Product } from "../models";
-import { StoresService } from "./stores.service";
+import { StoresService } from "../../evotor-stores/evotor-stores.service";
 import { map, tap, filter, find } from "rxjs/operators";
 
 @Injectable({
@@ -24,7 +24,7 @@ export class ProductsService {
   saveProducts(products: Product[]): Observable<any> {
     const currentStore = this.storesService.currentStore;
     return this.apiService.post(
-      `/stores/${currentStore.uuid}/products`,
+      `/stores/${currentStore.id}/products`,
       products
     );
   }
@@ -34,7 +34,7 @@ export class ProductsService {
     onlyFolders = false
   ): Observable<Product[]> {
     const currentStore = this.storesService.currentStore;
-    return this.apiService.get(`/stores/${currentStore.uuid}/products`).pipe(
+    return this.apiService.get(`/stores/${currentStore.id}/products`).pipe(
       map((products: Product[]) =>
         products
           .filter((product: Product) => product.parentUuid === parentUuid)
@@ -51,7 +51,7 @@ export class ProductsService {
     onlyFolders = false
   ): Observable<Product[]> {
     const currentStore = this.storesService.currentStore;
-    return this.apiService.get(`/stores/${currentStore.uuid}/products`).pipe(
+    return this.apiService.get(`/stores/${currentStore.id}/products`).pipe(
       map((products: Product[]) => {
         const currentProduct = products.find(
           (product: Product) => product.uuid === uuid
@@ -68,7 +68,7 @@ export class ProductsService {
 
   public getProductWithChildren(uuid: string): Observable<Product[]> {
     return this.apiService
-      .get(`/stores/${this.storesService.currentStore.uuid}/products`)
+      .get(`/stores/${this.storesService.currentStore.id}/products`)
       .pipe(
         map((products: Product[]) => {
           return products.filter(
@@ -82,7 +82,7 @@ export class ProductsService {
 
   public getProduct(uuid: string): Observable<Product> {
     return this.apiService
-      .get(`/stores/${this.storesService.currentStore.uuid}/products`)
+      .get(`/stores/${this.storesService.currentStore.id}/products`)
       .pipe(
         map((products: Product[]) => {
           const currrentProduct = products.find(

@@ -42,7 +42,7 @@ export class ProductPreviewComponent implements OnInit {
     this.currentStore = this.storesService.currentStore;
     this.viewContainerRef.createEmbeddedView(this.groupTemplate);
     this.subscribtion = this.cacheService
-      .getSubscription(`${this.product.uuid}_${this.currentStore.uuid}`)
+      .getSubscription(`${this.product.uuid}_${this.currentStore.id}`)
       .subscribe(products => {
         this.isExpanded = products !== undefined;
         if (products) {
@@ -59,7 +59,7 @@ export class ProductPreviewComponent implements OnInit {
 
   toggleExpand() {
     this.cacheService.expandCacheRecord(
-      `${this.product.uuid}_${this.currentStore.uuid}`,
+      `${this.product.uuid}_${this.currentStore.id}`,
       this.product
     );
   }

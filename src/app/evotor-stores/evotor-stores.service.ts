@@ -2,21 +2,21 @@ import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject, ReplaySubject } from "rxjs";
 import {
   tap,
-  first,
   map,
   distinctUntilChanged,
-  find,
   take
 } from "rxjs/operators";
 
-import { ApiService } from "./api.service";
-import { EvotorStore } from "../models";
-import { TokenService } from "./token.service";
+import { ApiService } from "../shared/services/api.service";
+import { EvotorStore } from "../shared/models";
+import { StorageService } from "../shared/services/storage.service";
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: "root"
 })
 export class StoresService {
+
   private storeSubject = new BehaviorSubject({} as EvotorStore);
   public store = this.storeSubject.asObservable().pipe(distinctUntilChanged());
   public currentStore: EvotorStore;
@@ -29,7 +29,7 @@ export class StoresService {
 
   constructor(
     private apiService: ApiService,
-    private tokenService: TokenService
+    private tokenService: StorageService
   ) {}
 
   populate() {
@@ -50,14 +50,14 @@ export class StoresService {
       this.storesSubject.next(data);
       this.stores = data;
       var currentStore = data.find(
-        store => this.currentStore.uuid === store.uuid
+        store => this.currentStore.id === store.id
       );
       this.storeSubject.next(currentStore || data[0]);
     }
   }
 
   private purgeVars(): void {
-    this.tokenService.destroyToken();
+    this.tokenService.destroyItem(environment.token_key);
     this.storeSubject.next({} as EvotorStore);
     this.storesSubject.next([]);
   }
@@ -69,8 +69,8 @@ export class StoresService {
   }
 
   public getStores(): Observable<EvotorStore[]> {
-    console.log("getStores");
-    return this.apiService.get("/stores/search").pipe(
+
+    return this.apiService.get("/stores").pipe(map((data: { items: EvotorStore[], paging: string }) => data.items),
       tap(stores => {
         this.storesSubject.next(stores);
         this.stores = stores;

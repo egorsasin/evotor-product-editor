@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AuthComponent } from "./auth/auth.component";
 import { StoreResolver } from "./store-resolver.service";
 import { StoresResolver } from "./stores-resolver.service";
-import { DefaultStoreResolver } from "./default-store.service";
+//import { DefaultStoreResolver } from "./default-store.service";
 import { LayoutBaseComponent } from "./ui/layout-base/layout-base.component";
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
     //resolve: { stores: StoresResolver },
     children: [
       {
-        path: ":store",
+        path: "dashboard",
         loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
         //resolve: { store: StoreResolver }
       },

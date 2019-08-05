@@ -11,7 +11,7 @@ export class StoreResolver implements Resolve<EvotorStore> {
   resolve(route: ActivatedRouteSnapshot): Observable<EvotorStore> {
     const storeUuid: string = route.params["store"];
     return this.storeService.storesRx.pipe(
-      map((stores: EvotorStore[]) => stores.find(store => store.uuid == storeUuid)),
+      map((stores: EvotorStore[]) => stores.find(store => store.id == storeUuid)),
       tap((store: EvotorStore) => (this.storeService.currentStore = store))
     );
   }

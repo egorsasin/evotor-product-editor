@@ -15,7 +15,7 @@ export class LayoutComponent implements OnInit {
     this.storeService.getStores().subscribe(stores => {
       if (stores) {
         this.storeService.currentStore = stores[0];
-        this.router.navigateByUrl(`/${stores[0].uuid}`);
+        this.router.navigateByUrl(`/${stores[0].id}`);
       }
     });
   }
