@@ -6,17 +6,17 @@ import {
   Resolve
 } from "@angular/router";
 import { catchError, map } from "rxjs/operators";
-import { StoresService, Store } from "./shared";
+import { StoresService, EvotorStore } from "./shared";
 import { Observable, empty } from "rxjs";
 
 @Injectable()
-export class StoresResolver implements Resolve<Store[]> {
+export class StoresResolver implements Resolve<EvotorStore[]> {
   constructor(private storeService: StoresService, private router: Router) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<Store[]> {
+  ): Observable<EvotorStore[]> {
     return this.storeService.getStores().pipe(
       catchError(err => {
         this.router.navigateByUrl("/");

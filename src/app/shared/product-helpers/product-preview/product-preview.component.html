@@ -16,9 +16,11 @@
 </td>
 <td>{{ product.price }}</td>
 <td>{{ product.measureName }}</td>
-<td><a class="icon" (click)="editProduct(product)">
+<td>
+  <a class="icon" (click)="editProduct(product)">
     <i class="fe fe-edit-3"></i>
-  </a></td>
+  </a>
+</td>
 
 <ng-template #node>
   <tr app-product-preview *ngFor="let product of products; trackBy: trackByUuid" [product]="product" [level]="level + 1"></tr>

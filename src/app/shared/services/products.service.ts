@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { ApiService } from "./api.service";
-import { Product, Store } from "../models";
+import { Product } from "../models";
 import { StoresService } from "./stores.service";
 import { map, tap, filter, find } from "rxjs/operators";
 

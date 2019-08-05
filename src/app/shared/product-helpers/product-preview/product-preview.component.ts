@@ -8,10 +8,9 @@ import {
 } from "@angular/core";
 import { Subscription } from "rxjs";
 
-import { Product, Store } from "../../models";
+import { Product, EvotorStore } from "../../models";
 import { CacheService, StoresService } from "../../services";
 import { ProductEventService } from "../../services/product-event.service";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "[app-product-preview]",
@@ -24,12 +23,12 @@ export class ProductPreviewComponent implements OnInit {
   @Input()
   level: number = 0;
 
-  @ViewChild("node")
+  @ViewChild("node", {static: true})
   groupTemplate: TemplateRef<any>;
 
   public isExpanded: boolean = false;
   public products: Product[];
-  private currentStore: Store;
+  private currentStore: EvotorStore;
   private subscribtion: Subscription;
 
   constructor(

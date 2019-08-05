@@ -13,18 +13,18 @@ const routes: Routes = [
   },
   {
     path: "",
-    resolve: { stores: StoresResolver },
+    //resolve: { stores: StoresResolver },
     children: [
       {
         path: ":store",
-        loadChildren: "./dashboard/dashboard.module#DashboardModule",
-        resolve: { store: StoreResolver }
+        loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
+        //resolve: { store: StoreResolver }
       },
       {
         path: "",
         pathMatch: "full",
         component: LayoutBaseComponent,
-        resolve: { DefaultStoreResolver }
+        //resolve: { DefaultStoreResolver }
       }
     ]
   }

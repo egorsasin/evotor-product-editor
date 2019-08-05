@@ -13,10 +13,13 @@ import { StoresResolver } from "./stores-resolver.service";
 import { StoreResolver } from "./store-resolver.service";
 import { LayoutBaseComponent } from "./ui/layout-base/layout-base.component";
 import { DefaultStoreResolver } from "./default-store.service";
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './shared/store';
+import { StoreSelectorComponent } from './store-selector/store-selector.component';
 
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, LayoutBaseComponent],
+  declarations: [AppComponent, AuthComponent, LayoutBaseComponent, StoreSelectorComponent],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -24,6 +27,13 @@ import { DefaultStoreResolver } from "./default-store.service";
     HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
   ],
   providers: [
     {
@@ -35,6 +45,7 @@ import { DefaultStoreResolver } from "./default-store.service";
     StoreResolver,
     DefaultStoreResolver,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ StoreSelectorComponent ]
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Store } from "./store";
+import { EvotorStore } from "./store";
 
 export enum ProductTypes {
   NORMAL = "Товар",
@@ -28,7 +28,7 @@ export interface Product {
   alcoholProductKindCode: number;
   tareVolume: number;
 
-  store: Store;
+  store: EvotorStore;
   parent: Product;
   expanded: boolean;
 }
