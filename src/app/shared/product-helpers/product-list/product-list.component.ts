@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductsService, CacheService, StoresService } from "../../services";
-import { EvotorStore, Product } from "../../models";
+import { ProductsService, CacheService, EvoStoresService } from "../../services";
+import { EvoStore, Product } from "../../models";
 import { Observable } from "rxjs";
 import { switchMap, mergeMap, tap } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
@@ -14,10 +14,10 @@ export class ProductListComponent implements OnInit {
   public products: Product[];
   public parentUuid: string | null = null;
 
-  private currentStore: EvotorStore;
+  private currentStore: EvoStore;
 
   constructor(
-    private storesService: StoresService,
+    private storesService: EvoStoresService,
     private productService: ProductsService,
     private cacheService: CacheService,
     private activatedRoute: ActivatedRoute

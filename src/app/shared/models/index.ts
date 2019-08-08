@@ -1,2 +1,2 @@
-export * from "../../evotor-stores/models/evotor-store";
+export * from "../../evo-stores/models/evo-store";
 export * from "./product";

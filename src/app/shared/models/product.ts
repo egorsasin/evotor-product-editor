@@ -1,4 +1,4 @@
-import { EvotorStore } from "../../evotor-stores/models/evotor-store";
+import { EvoStore } from "../../evo-stores/models/evo-store";
 
 export enum ProductTypes {
   NORMAL = "Товар",
@@ -28,7 +28,7 @@ export interface Product {
   alcoholProductKindCode: number;
   tareVolume: number;
 
-  store: EvotorStore;
+  store: EvoStore;
   parent: Product;
   expanded: boolean;
 }

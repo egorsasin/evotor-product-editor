@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Product, ProductsService, StoresService } from "../shared";
+import { Product, ProductsService } from "../shared";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({

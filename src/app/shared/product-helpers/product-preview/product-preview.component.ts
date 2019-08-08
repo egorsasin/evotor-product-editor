@@ -8,8 +8,8 @@ import {
 } from "@angular/core";
 import { Subscription } from "rxjs";
 
-import { Product, EvotorStore } from "../../models";
-import { CacheService, StoresService } from "../../services";
+import { Product, EvoStore } from "../../models";
+import { CacheService, EvoStoresService } from "../../services";
 import { ProductEventService } from "../../services/product-event.service";
 
 @Component({
@@ -28,13 +28,13 @@ export class ProductPreviewComponent implements OnInit {
 
   public isExpanded: boolean = false;
   public products: Product[];
-  private currentStore: EvotorStore;
+  private currentStore: EvoStore;
   private subscribtion: Subscription;
 
   constructor(
     private cacheService: CacheService,
     private viewContainerRef: ViewContainerRef,
-    private storesService: StoresService,
+    private storesService: EvoStoresService,
     private productEventService: ProductEventService
   ) {}
 

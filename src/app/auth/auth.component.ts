@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { Store } from '@ngrx/store';
-import * as AuthActions from './auth.actions';
+import { environment } from '../../environments/environment';
+import { StorageService } from '../shared';
 
 @Component({
   selector: "evo-auth",
@@ -11,14 +11,16 @@ import * as AuthActions from './auth.actions';
 export class AuthComponent implements OnInit {
   constructor(    
     private route: ActivatedRoute,
-    private store: Store<any>, 
+    private storageService: StorageService,
+    private router: Router 
   ) {}
 
   ngOnInit() { 
     
     this.route.paramMap.subscribe(params => {
       const token: string = params.get('token');  
-      this.store.dispatch(AuthActions.initAction({ token }));
+      this.storageService.setItem(environment.token_key, token);
+      this.router.navigate(['/dashboard']); 
     });
   }
 

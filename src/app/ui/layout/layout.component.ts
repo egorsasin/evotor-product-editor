@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { StoresService } from "../../shared";
+import { EvoStoresService } from "../../shared";
 import { Router } from "@angular/router";
 
 @Component({
@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
   styles: []
 })
 export class LayoutComponent implements OnInit {
-  constructor(private storeService: StoresService, private router: Router) {}
+  constructor(private storeService: EvoStoresService, private router: Router) {}
 
   ngOnInit() {
     console.log("Layout Component");

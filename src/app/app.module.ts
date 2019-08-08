@@ -14,7 +14,7 @@ import { HttpTokenInterceptor } from "./shared";
 import { AuthComponent } from "./auth/auth.component";
 import { LayoutBaseComponent } from "./ui/layout-base/layout-base.component";
 import { StoreSelectorComponent } from './store-selector/store-selector.component';
-import { EvotorStoresModule } from './evotor-stores/evotor-stores.module';
+import { EvoStoresModule } from './evo-stores/evo-stores.module';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -28,7 +28,7 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    EvotorStoresModule,
+    EvoStoresModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [

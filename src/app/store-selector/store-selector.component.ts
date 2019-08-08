@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import { EvotorStore } from '../shared';
-import { getStores, State} from '../evotor-stores/store';
+import { EvoStore } from '../shared';
+import { getStores, State} from '../evo-stores/store';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 })
 export class StoreSelectorComponent implements OnInit {
 
-  public stores: Observable<EvotorStore[]>;
+  public stores: Observable<EvoStore[]>;
 
   constructor(
     public modal: NgbActiveModal,

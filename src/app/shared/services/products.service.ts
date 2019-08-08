@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 
 import { ApiService } from "./api.service";
 import { Product } from "../models";
-import { StoresService } from "../../evotor-stores/evotor-stores.service";
+import { EvoStoresService } from "../../evo-stores/evo-stores.service";
 import { map, tap, filter, find } from "rxjs/operators";
 
 @Injectable({
@@ -12,7 +12,7 @@ import { map, tap, filter, find } from "rxjs/operators";
 export class ProductsService {
   constructor(
     private apiService: ApiService,
-    private storesService: StoresService
+    private storesService: EvoStoresService
   ) {}
 
   saveProduct(product: Product): Observable<any> {

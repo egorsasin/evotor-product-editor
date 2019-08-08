@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { StoresService } from "../../shared";
+import { EvoStoresService } from "../../shared";
 import { ActivatedRoute } from "@angular/router";
 import { switchMap } from "rxjs/operators";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   //public stores: Store[];
 
   constructor(
-    private storesService: StoresService,
+    private storesService: EvoStoresService,
     private route: ActivatedRoute,
     private modalService: NgbModal
   ) {}

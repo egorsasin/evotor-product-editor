@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject, ReplaySubject, throwError } from "rxjs";
-import { map, catchError } from "rxjs/operators";
 import { ApiService } from "../shared/services";
-import { EvotorStore } from "../evotor-stores/models/evotor-store";
+import { EvoStore } from "../evo-stores/models/evo-store";
 
 @Injectable({
   providedIn: "root"
@@ -37,7 +36,7 @@ export class AuthService {
     // );
   //}
 
-  setAuth(data: EvotorStore[]): void {
+  setAuth(data: EvoStore[]): void {
     // this.isAuthenticatedApp.next(true);
     // if (data.length) {
     //   const currentStore = this.currentStoreSubject.value as EvotorStore;
