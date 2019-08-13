@@ -9,8 +9,9 @@ import {
 import { Subscription } from "rxjs";
 
 import { Product, EvoStore } from "../../models";
-import { CacheService, EvoStoresService } from "../../services";
+import { CacheService } from "../../services";
 import { ProductEventService } from "../../services/product-event.service";
+import { EvoStoresService } from 'src/app/evo-stores/evo-stores.service';
 
 @Component({
   selector: "[app-product-preview]",

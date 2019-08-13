@@ -7,18 +7,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule, routedComponents } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { SharedModule } from "./shared/shared.module";
 import { HttpTokenInterceptor } from "./shared";
-import { AuthComponent } from "./auth/auth.component";
-import { LayoutBaseComponent } from "./ui/layout-base/layout-base.component";
-import { StoreSelectorComponent } from './store-selector/store-selector.component';
-import { EvoStoresModule } from './evo-stores/evo-stores.module';
+
 import { environment } from '../environments/environment';
+import { UiModule } from './ui/ui.module';
+import { EvoStoresModule } from './evo-stores/evo-stores.module';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, LayoutBaseComponent, StoreSelectorComponent],
+  declarations: [AppComponent, routedComponents ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -28,8 +27,9 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    EvoStoresModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    UiModule,
+    EvoStoresModule
   ],
   providers: [
     {
@@ -39,6 +39,6 @@ import { environment } from '../environments/environment';
     },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ StoreSelectorComponent ]
+
 })
 export class AppModule {}

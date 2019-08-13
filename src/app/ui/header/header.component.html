@@ -14,7 +14,7 @@
         <button class="btn btn-secondary" (click)="open()"><i class="fe fe-more-horizontal"></i></button>
 
         <div *ngIf="false" ngbDropdownMenu aria-labelledby="storesDropdown" class="dropdown-menu-arrow">
-          <a [routerLink]="['/', store.uuid]" class="dropdown-item" *ngFor="let store of stores">
+          <a class="dropdown-item" *ngFor="let store of stores">
             {{ store.name }}
             <div *ngIf="false" class=" small text-muted ">
               {{ store.address ? store.address : "Адрес не указан " }}

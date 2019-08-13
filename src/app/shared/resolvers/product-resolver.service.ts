@@ -16,12 +16,12 @@ export class ProductResolver {
     private router: Router
   ) {}
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<any> {
-    return this.productService
-      .getProduct(route.params["id"])
-      .pipe(catchError(err => this.router.navigateByUrl("/")));
-  }
+  // resolve(
+  //   route: ActivatedRouteSnapshot,
+  //   state: RouterStateSnapshot
+  // ): Observable<any> {
+  //   return this.productService
+  //     .getProduct(route.params["id"])
+  //     .pipe(catchError(err => this.router.navigateByUrl("/")));
+  // }
 }

@@ -18,5 +18,5 @@ export const selectStore = createAction(
 
 export const loadStores = createAction(
   ActionTypes.LOAD,
-  props<{ stores: EvoStore[]; }>(),
+  props<{ stores: EvoStore[], selected: string }>(),
 );

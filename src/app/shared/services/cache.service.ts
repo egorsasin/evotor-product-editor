@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Subject, Observable, BehaviorSubject } from "rxjs";
 import { Product } from "../models";
 import { ProductsService } from "./products.service";
-import { EvoStoresService } from "../../evo-stores/evo-stores.service";
 
 interface CacheContent {
   value: any;
@@ -24,7 +23,6 @@ export class CacheService {
 
   constructor(
     private productsService: ProductsService,
-    private storesService: EvoStoresService
   ) {}
 
   getSubscription(key: string): Observable<Product[]> {

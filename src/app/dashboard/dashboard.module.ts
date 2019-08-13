@@ -9,7 +9,7 @@ import {
 } from "./dashboard-routing.module";
 import { SharedModule } from "../shared/shared.module";
 import { GroupSelectorComponent } from "../group-selector/group-selector.component";
-import { HeaderComponent } from "../ui/header/header.component";
+
 import { ProductEditorComponent } from "../product-editor/product-editor.component";
 
 @NgModule({
@@ -24,7 +24,7 @@ import { ProductEditorComponent } from "../product-editor/product-editor.compone
   declarations: [
     routingComponents,
     GroupSelectorComponent,
-    HeaderComponent,
+
     ProductEditorComponent
   ],
   entryComponents: [GroupSelectorComponent]

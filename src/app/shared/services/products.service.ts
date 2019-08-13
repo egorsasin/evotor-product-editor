@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 
 import { ApiService } from "./api.service";
 import { Product } from "../models";
-import { EvoStoresService } from "../../evo-stores/evo-stores.service";
+
 import { map, tap, filter, find } from "rxjs/operators";
 
 @Injectable({
@@ -12,28 +12,27 @@ import { map, tap, filter, find } from "rxjs/operators";
 export class ProductsService {
   constructor(
     private apiService: ApiService,
-    private storesService: EvoStoresService
   ) {}
 
-  saveProduct(product: Product): Observable<any> {
-    const products = new Array();
-    products.push(product);
-    return this.saveProducts(products);
-  }
+  // saveProduct(product: Product): Observable<any> {
+  //   const products = new Array();
+  //   products.push(product);
+  //   return this.saveProducts(products);
+  // }
 
-  saveProducts(products: Product[]): Observable<any> {
-    const currentStore = this.storesService.currentStore;
-    return this.apiService.post(
-      `/stores/${currentStore.id}/products`,
-      products
-    );
-  }
+  // saveProducts(products: Product[]): Observable<any> {
+  //    const currentStore = this.storesService.currentStore;
+  //    return this.apiService.post(
+  //      `/stores/${currentStore.id}/products`,
+  //      products
+  //    );
+  // }
 
   public getProducts(
     parentUuid: string = null,
     onlyFolders = false
   ): Observable<Product[]> {
-    const currentStore = this.storesService.currentStore;
+    const currentStore = null; //this.storesService.currentStore;
     return this.apiService.get(`/stores/${currentStore.id}/products`).pipe(
       map((products: Product[]) =>
         products
@@ -50,7 +49,7 @@ export class ProductsService {
     uuid: string = null,
     onlyFolders = false
   ): Observable<Product[]> {
-    const currentStore = this.storesService.currentStore;
+    const currentStore = null; //this.storesService.currentStore;
     return this.apiService.get(`/stores/${currentStore.id}/products`).pipe(
       map((products: Product[]) => {
         const currentProduct = products.find(
@@ -66,34 +65,34 @@ export class ProductsService {
     );
   }
 
-  public getProductWithChildren(uuid: string): Observable<Product[]> {
-    return this.apiService
-      .get(`/stores/${this.storesService.currentStore.id}/products`)
-      .pipe(
-        map((products: Product[]) => {
-          return products.filter(
-            product =>
-              (product.uuid === uuid || product.parentUuid == uuid) &&
-              product.group
-          );
-        })
-      );
-  }
+  // public getProductWithChildren(uuid: string): Observable<Product[]> {
+  //   return this.apiService
+  //     .get(`/stores/${this.storesService.currentStore.id}/products`)
+  //     .pipe(
+  //       map((products: Product[]) => {
+  //         return products.filter(
+  //           product =>
+  //             (product.uuid === uuid || product.parentUuid == uuid) &&
+  //             product.group
+  //         );
+  //       })
+  //     );
+  // }
 
-  public getProduct(uuid: string): Observable<Product> {
-    return this.apiService
-      .get(`/stores/${this.storesService.currentStore.id}/products`)
-      .pipe(
-        map((products: Product[]) => {
-          const currrentProduct = products.find(
-            product => product.uuid == uuid
-          );
-          currrentProduct.parent = products.find(
-            product => product.uuid == currrentProduct.parentUuid
-          );
-          return currrentProduct;
-        })
-      );
+  // public getProduct(uuid: string): Observable<Product> {
+  //   return this.apiService
+  //     .get(`/stores/${this.storesService.currentStore.id}/products`)
+  //     .pipe(
+  //       map((products: Product[]) => {
+  //         const currrentProduct = products.find(
+  //           product => product.uuid == uuid
+  //         );
+  //         currrentProduct.parent = products.find(
+  //           product => product.uuid == currrentProduct.parentUuid
+  //         );
+  //         return currrentProduct;
+  //       })
+  //     );
     //   map((products: Product[]) => {
     //     const product: Product = products.find(
     //       (product: Product) => product.uuid === uuid
@@ -111,5 +110,5 @@ export class ProductsService {
     //   );
     //   return product;
     // }
-  }
+  //}
 }

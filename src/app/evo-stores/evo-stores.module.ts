@@ -1,34 +1,32 @@
-import { NgModule, InjectionToken } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreModule, META_REDUCERS, MetaReducer } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { reducer } from './store';
 import { StoresEffects } from './store/effects';
-import { StoresResolver } from './resolvers/stores-resolver.service';
 import { StorageService } from '../shared';
 import { syncMetaReducer } from './store/metareducers';
+import { CURRENT_STORE_KEY, EVO_STORES_CONFIG_TOKEN } from './evo-stores.tokens';
 
-export const CURRENT_STORE_KEY = new InjectionToken<string[]>('currentStore');
 
-export function getMetaReducers(
+export function getConfig(  
+  currentStoreKey: string,
   storageService: StorageService,
-  currentStoreKey: string
-): MetaReducer<any>[] {
-  return [ syncMetaReducer(storageService) ]
+) {
+  return { metaReducers: [ syncMetaReducer(currentStoreKey, storageService) ]}
 }
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature('stores', reducer,),
+    StoreModule.forFeature('stores', reducer, EVO_STORES_CONFIG_TOKEN),
     EffectsModule.forFeature([ StoresEffects ])
   ],
   providers: [ 
-    StoresResolver,
     { provide: CURRENT_STORE_KEY, useValue: 'evo-current-store'},
-    { provide: META_REDUCERS, deps: [ CURRENT_STORE_KEY, StorageService ], useFactory: getMetaReducers }
+    { provide: EVO_STORES_CONFIG_TOKEN, deps: [ CURRENT_STORE_KEY, StorageService ], useFactory: getConfig }
   ]
 })
 export class EvoStoresModule { }

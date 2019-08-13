@@ -32,6 +32,14 @@ export class EvoStoresService {
     private tokenService: StorageService
   ) {}
 
+  public getStores(): Observable<EvoStore[]> {
+
+    return this.apiService.get("/stores")
+      .pipe(
+        map((data: { items: EvoStore[], paging: string }) => data.items),
+      );
+  }
+
   populate() {
     // if (this.tokenService.getToken()) {
     //   this.apiService
@@ -68,11 +76,5 @@ export class EvoStoresService {
       .pipe(map(stores => stores.find(store => store.uuid === uuid)));
   }
 
-  public getStores(): Observable<EvoStore[]> {
 
-    return this.apiService.get("/stores")
-      .pipe(
-        map((data: { items: EvoStore[], paging: string }) => data.items),
-      );
-  }
 }

@@ -1,8 +1,8 @@
 import { EvoStore } from '../../shared/models';
-import { createReducer, on, Action, createFeatureSelector, createSelector } from '@ngrx/store';
+import { createReducer, on, Action, createFeatureSelector, createSelector, ActionReducer } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import  * as EvotorStoresActions from './actions';
+import  * as EvoStoresActions from './actions';
 import  * as fromRoot from '../../shared/store';
 
 export interface EvoStoresState extends EntityState<EvoStore> {
@@ -22,11 +22,11 @@ export const initialState: EvoStoresState = adapter.getInitialState({
 
 const storesReducer = createReducer (
   initialState,
-  on(EvotorStoresActions.selectStore, (state, { id }) => 
+  on(EvoStoresActions.selectStore, (state, { id }) => 
     ({ ...state, selected: id })
   ),
-  on(EvotorStoresActions.loadStores, (state, { stores }) => {
-    return adapter.addMany(stores, { ...state, loaded: true });
+  on(EvoStoresActions.loadStores, (state, { stores, selected }) => {
+    return adapter.addMany(stores, { ...state, selected, loaded: true });
   }),
 );
 
@@ -34,17 +34,13 @@ export function reducer(state: EvoStoresState | undefined, action: Action) {
   return storesReducer(state, action);
 }
 
-const { selectAll } = adapter.getSelectors();
-export const getEvoStores = selectAll;
+const { selectAll, selectIds } = adapter.getSelectors();
 
+export const selectStoresIds = selectIds;
+
+// Selectors
 export const getStoresState =  createFeatureSelector<State, EvoStoresState>("stores");
+export const getStoresLoaded = createSelector(getStoresState, (state: EvoStoresState) => state.loaded);
 
-export const getStoresLoaded = createSelector(
-  getStoresState,
-  (state: EvoStoresState) => state.loaded
-);
+export const getStores = createSelector(getStoresState, selectAll);
 
-export const getStores = createSelector(
-  getStoresState,
-  getEvoStores
-);

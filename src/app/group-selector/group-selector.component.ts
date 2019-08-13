@@ -20,14 +20,14 @@ export class GroupSelectorComponent implements OnInit {
   ) {}
 
   private getFolders(uuid: string) {
-    this.productsService.getProductWithChildren(uuid).subscribe(products => {
-      this.parent = products.find(product => product.uuid === uuid);
-      this.groups = products.filter(
-        product =>
-          product.parentUuid === uuid &&
-          (!product.group || product.uuid !== this.product.uuid)
-      );
-    });
+    // this.productsService.getProductWithChildren(uuid).subscribe(products => {
+    //   this.parent = products.find(product => product.uuid === uuid);
+    //   this.groups = products.filter(
+    //     product =>
+    //       product.parentUuid === uuid &&
+    //       (!product.group || product.uuid !== this.product.uuid)
+    //   );
+    // });
   }
 
   ngOnInit() {

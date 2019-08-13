@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductsService, CacheService, EvoStoresService } from "../../services";
+import { ProductsService, CacheService } from "../../services";
 import { EvoStore, Product } from "../../models";
 import { Observable } from "rxjs";
 import { switchMap, mergeMap, tap } from "rxjs/operators";
@@ -17,7 +17,6 @@ export class ProductListComponent implements OnInit {
   private currentStore: EvoStore;
 
   constructor(
-    private storesService: EvoStoresService,
     private productService: ProductsService,
     private cacheService: CacheService,
     private activatedRoute: ActivatedRoute

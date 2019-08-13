@@ -2,7 +2,7 @@ import { Component, OnInit, HostBinding } from "@angular/core";
 import { sidebarAnimation } from "./animations";
 
 @Component({
-  selector: "app-sidebar",
+  selector: "evo-sidebar",
   templateUrl: "./sidebar.component.html",
   animations: [sidebarAnimation]
 })
