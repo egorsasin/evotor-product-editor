@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { StoreConfig } from '@ngrx/store/src/store_module';
-import { EvoStoresState } from './store';
+import { EvoStoresState } from './store/reducer';
 
 export const CURRENT_STORE_KEY = new InjectionToken<string[]>('Evo Current Store');
 

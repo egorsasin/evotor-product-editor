@@ -72,7 +72,7 @@ export class EvoStoresService {
 
   public getStore(uuid: string): Observable<EvoStore> {
     return this.apiService
-      .get("/stores/4")
+      .get("")
       .pipe(map(stores => stores.find(store => store.uuid === uuid)));
   }
 

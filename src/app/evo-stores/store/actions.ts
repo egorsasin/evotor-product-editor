@@ -1,10 +1,10 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 import { EvoStore } from '../../shared/models';
 
-export enum ActionTypes { 
-  SELECT = "[Stores] Select",
+export enum ActionTypes {   
   LOAD = "[Stores] Load",
   INIT = "[Stores] Init",
+  SELECT = "[Stores] Set Selected Store",
 }
 
 export const initStores = createAction(
@@ -20,3 +20,6 @@ export const loadStores = createAction(
   ActionTypes.LOAD,
   props<{ stores: EvoStore[], selected: string }>(),
 );
+
+const actionTypes = union({ initStores, selectStore, loadStores });
+export type EvoStoresActionsUnion = typeof actionTypes;

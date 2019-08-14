@@ -1,28 +1,18 @@
 <div class="header">
   <div class="container-fluid">
     <div class="d-flex">
-      <div ngbDropdown>
 
-        <a ngbDropdownToggle id="storesDropdown" class="nav-link leading-none p-0">
-          <span class="d-block">
-            <span class="text-default">Магазин не выбран</span>
-            <small *ngIf="false" class="text-muted d-block mt-1">{{ currentStore.address ? currentStore.address : "Адрес не указан"
-              }}</small>
-          </span>
-        </a>
+      <a class="nav-link leading-none p-0">
+        
+          <span *ngIf="(currentStore | async) as store; else storeNotFound" class="text-default">{{ store.name }}</span>
+          <ng-template #storeNotFound>
+            <span class="text-default">{{ "Магазин не выбран" }}</span>
+          </ng-template>  
+        
+      </a>
 
-        <button class="btn btn-secondary" (click)="open()"><i class="fe fe-more-horizontal"></i></button>
+      <button class="btn btn-secondary" (click)="open()"><i class="fe fe-more-horizontal"></i></button>
 
-        <div *ngIf="false" ngbDropdownMenu aria-labelledby="storesDropdown" class="dropdown-menu-arrow">
-          <a class="dropdown-item" *ngFor="let store of stores">
-            {{ store.name }}
-            <div *ngIf="false" class=" small text-muted ">
-              {{ store.address ? store.address : "Адрес не указан " }}
-            </div>
-          </a>
-        </div>
-
-      </div>
     </div>
   </div>
 </div>

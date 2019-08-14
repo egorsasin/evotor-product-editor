@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import { EvoStore } from '../shared';
-import { getStores, State} from '../evo-stores/store';
-import { Store } from '@ngrx/store';
+
+
+import { EvoStore } from '../../shared';
+import { State, selectAll } from '../store';
+import { selectStore } from '../store/actions';
 
 @Component({
   selector: 'evo-store-selector',
@@ -19,7 +22,12 @@ export class StoreSelectorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.stores = this.store.select(getStores);
+    this.stores = this.store.select(selectAll);
+  }
+
+  select(id: string) {
+    this.store.dispatch(selectStore({ id }));
+    this.modal.close();
   }
 
 }

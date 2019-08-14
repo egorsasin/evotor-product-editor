@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="modal-body">
-  <a [routerLink]="['/', store.id]" class="dropdown-item" *ngFor="let store of (stores | async)">
+  <a class="dropdown-item" *ngFor="let store of (stores | async)" (click)="select(store.id)">
     {{ store.name }}   
   </a>
 </div>

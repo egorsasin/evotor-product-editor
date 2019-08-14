@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducer } from './store';
+import { reducer } from './store/reducer';
 import { StoresEffects } from './store/effects';
 import { StorageService } from '../shared';
 import { syncMetaReducer } from './store/metareducers';
 import { CURRENT_STORE_KEY, EVO_STORES_CONFIG_TOKEN } from './evo-stores.tokens';
+import { StoreSelectorComponent } from './components/store-selector.component';
 
 
 export function getConfig(  
@@ -18,7 +19,9 @@ export function getConfig(
 }
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    StoreSelectorComponent
+  ],
   imports: [
     CommonModule,
     StoreModule.forFeature('stores', reducer, EVO_STORES_CONFIG_TOKEN),
@@ -27,6 +30,9 @@ export function getConfig(
   providers: [ 
     { provide: CURRENT_STORE_KEY, useValue: 'evo-current-store'},
     { provide: EVO_STORES_CONFIG_TOKEN, deps: [ CURRENT_STORE_KEY, StorageService ], useFactory: getConfig }
+  ],
+  entryComponents: [
+    StoreSelectorComponent
   ]
 })
 export class EvoStoresModule { }
